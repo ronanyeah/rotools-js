@@ -15,7 +15,8 @@ test('futch test', t => (
   .chain( toJson )
   .fork(
     console.log,
-    res => t.ok(res, 'json fetch and parse success')
+    res =>
+      t.ok(res, 'json fetch and parse success')
   )
 ) )
 
@@ -25,13 +26,15 @@ test('futch errors', t => (
   futch('https://www.google.com')
   .chain( toJson )
   .fork(
-    err => t.equals(err.name, 'SyntaxError', 'json parse error thrown'),
+    err =>
+      t.equals(err.name, 'SyntaxError', 'json parse error thrown'),
     console.log
   ),
 
   futch('https://not.a.website')
   .fork(
-    err => t.equals(err.name, 'FetchError', 'incorrect url error thrown'),
+    err =>
+      t.equals(err.name, 'FetchError', 'incorrect url error thrown'),
     console.log
   )
 ) )
