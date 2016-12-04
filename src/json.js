@@ -18,9 +18,9 @@ const read =
 
 // String -> JSON -> Future Err _
 const write = curry(
-  (path, json = '') =>
+  (path, json) =>
     node(
-      done =>
+      done => // TODO try/catch the JSON call?
         fs.writeFile( path, JSON.stringify(json), done )
     )
 )
