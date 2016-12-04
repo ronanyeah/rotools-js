@@ -1,10 +1,11 @@
 'use strict'
 
-const flatten = require(`${ROOT}/src/flatten.js`)
-
+const { resolve }               = require('path')
 const { map }                   = require('ramda')
 const { pipe }                  = require('sanctuary')
 const { statSync, readdirSync } = require('fs')
+
+const flatten = require(resolve(`${__dirname}/../src/flatten.js`))
 
 // Walks through directories and files, nesting arrays to represent
 // file hierarchy.
