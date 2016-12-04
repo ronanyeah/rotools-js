@@ -21,12 +21,9 @@ test('emailer test', t => (
   //)
   //.map( prop('response') )
   Future.of('250 2.0.0 OK 1480845678 w79sm6585389wmw.0 - gsmtp')
-  .map(
-    response =>
-      t.equals( '250', response.substring(0, 3) )
-  )
   .fork(
     t.fail,
-    console.log
+    response =>
+      t.equals( '250', response.substring(0, 3) )
   )
 ) )

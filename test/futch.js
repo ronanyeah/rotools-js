@@ -14,7 +14,7 @@ test('futch test', t => (
   futch('https://jsonplaceholder.typicode.com/posts/1')
   .chain( toJson )
   .fork(
-    console.log,
+    t.fail,
     res =>
       t.ok(res, 'json fetch and parse success')
   )
@@ -28,13 +28,13 @@ test('futch errors', t => (
   .fork(
     err =>
       t.equals(err.name, 'SyntaxError', 'json parse error thrown'),
-    console.log
+    t.fail
   ),
 
   futch('https://not.a.website')
   .fork(
     err =>
       t.equals(err.name, 'FetchError', 'incorrect url error thrown'),
-    console.log
+    t.fail
   )
 ) )
