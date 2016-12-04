@@ -1,0 +1,30 @@
+{
+  "name": "rotools",
+  "version": "0.1.0",
+  "description": "helpers",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test/index.js",
+    "test:watch": "nodemon --ignore ./scrap -x 'npm run test'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronanyeah/rotools.git"
+  },
+  "author": "ronanyeah",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ronanyeah/rotools/issues"
+  },
+  "homepage": "https://github.com/ronanyeah/rotools#readme",
+  "dependencies": {
+    "fluture": "^4.1.0",
+    "node-fetch": "^1.6.3",
+    "ramda": "^0.22.1",
+    "sanctuary": "^0.11.1"
+  },
+  "devDependencies": {
+    "fs-extra": "^1.0.0",
+    "tape": "^4.6.3"
+  }
+}
