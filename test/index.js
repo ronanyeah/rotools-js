@@ -5,10 +5,10 @@ const { resolve } = require('path')
 
 global.ROOT = resolve(`${__dirname}/..`)
 
-ensureDirSync(`${ROOT}/scrap`)
+ensureDirSync(`${ROOT}/test/scrap`)
 
 readdirSync(`${ROOT}/src`)
 .forEach(
   file =>
-    require(`${ROOT}/test/${file}`)
+    require(`${ROOT}/test/src/${file}`)
 )

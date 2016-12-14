@@ -6,7 +6,7 @@ const { removeSync, ensureFileSync, ensureDirSync } = require('fs-extra')
 
 const fileMapper = require(`${ROOT}/src/fileMapper.js`)
 
-const testDirectory = `${ROOT}/scrap/map`
+const testDirectory = `${ROOT}/test/scrap/map`
 
 const files = [
   '/one/a.txt',

@@ -27,7 +27,7 @@ test('futch errors', t => (
   .chain( toJson )
   .fork(
     err =>
-      t.equals(err.name, 'SyntaxError', 'json parse error thrown'),
+      t.equals(err.name, 'SyntaxError', 'json parse error thrown correctly'),
     t.fail
   ),
 

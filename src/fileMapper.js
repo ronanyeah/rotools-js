@@ -7,19 +7,19 @@ const { statSync, readdirSync } = require('fs')
 
 const flatten = require(resolve(`${__dirname}/../src/flatten.js`))
 
-// Walks through directories and files, nesting arrays to represent
-// file hierarchy.
-// String -> [String|Array]
+/**
+ * Recursive filepath walker.
+ * @alias fileMapper
+ * @param {string} dir Directory to start from.
+ * @returns {array<string>}
+ * @example fileMapper('/home/me') //=> ['/home/me/file.txt', '/home/me/folder/pic.png']
+ */
 const walk = dir =>
   map(
-    pipe([
-      file =>
-        `${dir}/${file}`,
-      path =>
-        statSync(path).isDirectory()
-          ? walk(path)
-          : path
-    ]),
+    file =>
+      statSync(`${dir}/${file}`).isDirectory()
+        ? walk(`${dir}/${file}`)
+        : `${dir}/${file}`,
     readdirSync(dir)
   )
 

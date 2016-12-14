@@ -7,10 +7,17 @@ const { resolve }               = require('path')
 
 const srcFolder = resolve(`${__dirname}/src`)
 
+/*
+ * Returns an object with all the tools in ./src.
+ * {
+ *   name: function
+ * }
+ *
+ */
 module.exports =
   reduce(
-    // Object -> String -> Object
     curry(
+      // Object -> String -> Object
       (acc, file) =>
         assoc(
           replace('.js', '', file),

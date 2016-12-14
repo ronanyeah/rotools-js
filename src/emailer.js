@@ -1,29 +1,40 @@
 'use strict'
 
-const Future     = require('fluture')
+const { node }   = require('fluture')
+const { pipe }   = require('ramda')
 const nodemailer = require('nodemailer')
 
-/*
- * Creates email transporter.
- * @param {string} senderEmail gmail address the email is being 'sent' from
- * @param {string} password
- *    google password, or app password if you have 2FA enabled
- *    (https://support.google.com/accounts/answer/185833)
+/**
+ * Uses Gmail email and password to create a mail transporter.
+ * @alias emailer.setup
+ * @param {string} senderEmail Your Gmail address.
+ * @param {string} password Your Gmail password, or app password if you have 2FA enabled (https://support.google.com/accounts/answer/185833).
+ * @returns {emailer.sendEmail}
+ * @example emailer('mario@toad.com', 'hunter2') //=> sendEmail
  */
-// String -> String -> Function
-module.exports = (senderEmail, password) =>
-  (
+const setup =
+  pipe(
+    (senderEmail, password) =>
+      // https://nodemailer.com/2-0-0-beta/setup-smtp/
+      nodemailer.createTransport(
+        `smtps://${
+          encodeURIComponent(senderEmail)
+        }:${ password }@smtp.gmail.com`
+      ),
+
     transporter =>
-      /*
+      /**
        * Sends an email.
-       * @param {string} recipient email address of recipient
-       * @param {string} fromLabel name to show in the inbox
-       * @param {string} subject subject line
-       * @param {string} content email text
+       * @alias emailer.sendEmail
+       * @param {string} recipient The email address of intended recipient.
+       * @param {string} fromLabel The label to show in the inbox.
+       * @param {string} [subject=''] Subject line text.
+       * @param {string} [content=''] Email body.
+       * @returns Future[ err, res ]
+       * @example sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem').fork( ... )
        */
-      // String * 4 -> Future Err Res
-      (recipient, fromLabel, subject, content) =>
-        Future.node(
+      (recipient, fromLabel, subject = '', content = '') =>
+        node(
           done =>
             transporter.sendMail(
               {
@@ -36,11 +47,5 @@ module.exports = (senderEmail, password) =>
           )
         )
   )
-  (
-    // https://nodemailer.com/2-0-0-beta/setup-smtp/
-    nodemailer.createTransport(
-      `smtps://${
-        encodeURIComponent(senderEmail)
-      }:${ password }@smtp.gmail.com`
-    )
-  )
+
+module.exports = setup
