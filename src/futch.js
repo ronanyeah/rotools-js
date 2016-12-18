@@ -9,20 +9,11 @@ const fetch                         = require('node-fetch')
  * Futurized fetch. Worst name ever.
  * @alias futch
  * @param {string} url URL to fetch.
- * @param {object} [options={}] fetch options to be passed in.
- * @param {string} [parse=false] Optional body parsing instruction e.g. json, text.
+ * @param {object} [options] fetch options to be passed in.
  * @returns Future[ err, res ]
- * @example futch('https://json.com/', { headers }, 'json').fork( ... )
+ * @example futch('https://test.com/').fork( ... )
  */
-module.exports = (url, options = {}, parse = false) =>
-  parse
+module.exports = (url, options) =>
+  options
     ? fromPromise2(fetch, url, options)
-      .chain(
-        res =>
-          fromPromise(
-            () =>
-              res[parse](),
-            0
-          )
-      )
-    : fromPromise2(fetch, url, options)
+    : fromPromise(fetch, url)
