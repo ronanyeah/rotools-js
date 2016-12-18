@@ -14,7 +14,7 @@ const files = [
   '/one/two/three/c.txt'
 ]
 
-test('file mapper test', t => (
+test('fileMapper', t => (
   t.plan(1),
 
   ensureDirSync(testDirectory),

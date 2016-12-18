@@ -4,7 +4,7 @@ const test = require('tape')
 
 const flatten = require(`${ROOT}/src/flatten.js`)
 
-test('flatten test', t => (
+test('flatten', t => (
   t.plan(1),
 
   t.deepEquals(

@@ -1,40 +1,42 @@
 'use strict'
 
-const futch = require(`${ROOT}/src/futch.js`)
-
-const test            = require('tape')
+const test = require('tape')
+const nock = require('nock')
 const { fromPromise } = require('fluture')
 
-const toJson = res =>
-  fromPromise( () => res.json(), 0 )
+const futch = require(`${ROOT}/src/futch.js`)
 
-test('futch test', t => (
-  t.plan(1),
+nock('https://test.com')
+.put('/ok')
+.reply(
+  200,
+  'ok'
+)
 
-  futch('https://jsonplaceholder.typicode.com/posts/1')
-  .chain( toJson )
+test('futch', t => (
+  t.plan(2),
+
+  futch(
+    'https://test.com/ok',
+    { method: 'PUT' }
+  )
+  .chain(
+    res =>
+      fromPromise(
+        () => res.text(),
+        0
+      )
+  )
   .fork(
     t.fail,
     res =>
-      t.ok(res, 'json fetch and parse success')
-  )
-) )
-
-test('futch errors', t => (
-  t.plan(2),
-
-  futch('https://www.google.com')
-  .chain( toJson )
-  .fork(
-    err =>
-      t.equals(err.name, 'SyntaxError', 'json parse error thrown correctly'),
-    t.fail
+      t.equals(res, 'ok', 'fetch with options ok')
   ),
 
-  futch('https://not.a.website')
+  futch('https://NOT_A_WEBSITE')
   .fork(
     err =>
-      t.equals(err.name, 'FetchError', 'incorrect url error thrown'),
+      t.equals(err.name, 'FetchError', 'FetchError thrown ok'),
     t.fail
   )
 ) )

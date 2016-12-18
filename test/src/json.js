@@ -1,7 +1,7 @@
 'use strict'
 
-const test                  = require('tape')
-const { node }              = require('fluture')
+const test = require('tape')
+const { node } = require('fluture')
 const { unlinkSync, writeFile } = require('fs')
 
 const { write, read } = require(`${ROOT}/src/json.js`)
@@ -9,17 +9,18 @@ const { write, read } = require(`${ROOT}/src/json.js`)
 const testFile = `${ROOT}/test/scrap/test.json`
 const invalidFile = `${ROOT}/test/scrap/invalid.json`
 
-test('json write/read', t => (
-  t.plan(1),
+test('json', t => (
+  t.plan(3),
 
-  write( testFile, { prop: 1 } )
+  write( testFile, { yeah: 'ok' } )
   .chain( () => read(testFile) )
-  .map( json => t.equals( json.prop, 1, 'write/read json success' ) )
-  .fork( () => unlinkSync(testFile), () => unlinkSync(testFile) )
-) )
-
-test('json parse errors', t => (
-  t.plan(2),
+  .fork(
+    t.fail,
+    json => (
+      t.equals( json.yeah, 'ok', 'write/read json ok' ),
+      unlinkSync(testFile)
+    )
+  ),
 
   node(
     done =>
@@ -27,16 +28,17 @@ test('json parse errors', t => (
   )
   .chain( () => read(invalidFile) )
   .fork(
-    () => (
-      t.pass('json parse error threw'),
+    err => (
+      t.equals(err.name, 'SyntaxError', 'json parse error ok'),
       unlinkSync(invalidFile)
     ),
-    () => unlinkSync(invalidFile)
+    t.fail
   ),
 
   write( '/BAD/PATH', {} )
   .fork(
-    () => t.pass('bad path error threw'),
+    err =>
+      t.equals(err.name, 'Error', 'bad path error ok'),
     t.fail
   )
 ) )
