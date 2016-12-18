@@ -3,9 +3,8 @@
 const { curry, assoc, replace } = require('ramda')
 const { reduce }                = require('sanctuary')
 const { readdirSync }           = require('fs')
-const { resolve }               = require('path')
 
-const srcFolder = resolve(`${__dirname}/src`)
+const srcFolder = `${__dirname}/src`
 
 /*
  * Returns an object with all the tools in ./src.

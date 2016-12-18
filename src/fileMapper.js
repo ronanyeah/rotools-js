@@ -1,11 +1,10 @@
 'use strict'
 
-const { resolve }               = require('path')
-const { map }                   = require('ramda')
-const { pipe }                  = require('sanctuary')
+const { map } = require('ramda')
+const { pipe } = require('sanctuary')
 const { statSync, readdirSync } = require('fs')
 
-const flatten = require(resolve(`${__dirname}/../src/flatten.js`))
+const flatten = require(`${__dirname}/../src/flatten.js`)
 
 /**
  * Recursive filepath walker.

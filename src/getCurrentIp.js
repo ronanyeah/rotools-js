@@ -1,10 +1,10 @@
 'use strict'
 
-const { resolve }             = require('path')
-const futch                   = require(resolve(`${__dirname}/futch.js`))
-const ipValidator             = require(resolve(`${__dirname}/ipValidator.js`))
 const { fromPromise, reject } = require('fluture')
-const { prop }                = require('ramda')
+const { prop } = require('ramda')
+
+const futch = require(`${__dirname}/futch.js`)
+const ipValidator = require(`${__dirname}/ipValidator.js`)
 
 /**
  * Gets current IP address and validates it.
