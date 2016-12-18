@@ -1,6 +1,6 @@
 'use strict'
 
-const { fromPromise, reject } = require('fluture')
+const { fromPromise, reject, of } = require('fluture')
 const { prop } = require('ramda')
 
 const futch = require(`${__dirname}/futch.js`)
@@ -13,7 +13,7 @@ const ipValidator = require(`${__dirname}/ipValidator.js`)
  * @example getCurrentIp.fork( err, ip )
  */
 module.exports =
-  futch('https://api.ipify.org?format=json')
+  futch('https://ipinfo.io/json')
   .chain(
     res =>
       res.status === 200
@@ -24,9 +24,9 @@ module.exports =
           ))
   )
   .map( prop('ip') )
-  .map(
+  .chain(
     ip =>
       ipValidator(ip)
-        ? ip
+        ? of(ip)
         : reject(Error(`Invalid IP address returned: ${ip}`))
   )
