@@ -1,9 +1,7 @@
 'use strict'
 
 const { fromPromise, fromPromise2 } = require('fluture')
-const fetch                         = require('node-fetch')
-
-// String -> Object -> Boolean -> Future Err Res
+const fetch = require('node-fetch')
 
 /**
  * Futurized fetch. Worst name ever.

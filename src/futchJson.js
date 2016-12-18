@@ -1,9 +1,8 @@
 'use strict'
 
 const { fromPromise } = require('fluture')
-const futch = require(`${__dirname}/futch.js`)
 
-// String -> Object -> Boolean -> Future Err Res
+const futch = require(`${__dirname}/futch.js`)
 
 /**
  * Futurized json fetch.
