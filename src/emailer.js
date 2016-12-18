@@ -1,30 +1,21 @@
 'use strict'
 
 const { node }   = require('fluture')
-const { pipe }   = require('ramda')
 const nodemailer = require('nodemailer')
 
 /**
  * Uses Gmail email and password to create a mail transporter.
- * @alias emailer.setup
+ * @alias emailer
  * @param {string} senderEmail Your Gmail address.
  * @param {string} password Your Gmail password, or app password if you have 2FA enabled (https://support.google.com/accounts/answer/185833).
  * @returns {emailer.sendEmail}
  * @example emailer('mario@toad.com', 'hunter2') //=> sendEmail
  */
-const setup =
-  pipe(
-    (senderEmail, password) =>
-      // https://nodemailer.com/2-0-0-beta/setup-smtp/
-      nodemailer.createTransport(
-        `smtps://${
-          encodeURIComponent(senderEmail)
-        }:${ password }@smtp.gmail.com`
-      ),
-
+module.exports = (senderEmail, password) =>
+  (
     transporter =>
       /**
-       * Sends an email.
+       * Returned from `emailer`. Sends an email.
        * @alias emailer.sendEmail
        * @param {string} recipient The email address of intended recipient.
        * @param {string} fromLabel The label to show in the inbox.
@@ -47,5 +38,11 @@ const setup =
           )
         )
   )
-
-module.exports = setup
+  (
+    // https://nodemailer.com/2-0-0-beta/setup-smtp/
+    nodemailer.createTransport(
+      `smtps://${
+        encodeURIComponent(senderEmail)
+      }:${ password }@smtp.gmail.com`
+    )
+  )
