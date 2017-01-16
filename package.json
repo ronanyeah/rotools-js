@@ -1,7 +1,7 @@
 {
   "name": "rotools",
-  "version": "1.0.0",
-  "description": "helpers",
+  "version": "1.0.1",
+  "description": "functional utilities",
   "main": "index.js",
   "scripts": {
     "test": "node ./test/index.js | tap-spec",
