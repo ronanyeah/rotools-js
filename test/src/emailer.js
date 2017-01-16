@@ -4,12 +4,12 @@ const test = require('tape')
 const { prop } = require('ramda')
 const { of } = require('fluture')
 
-const {
-  senderEmail,
-  password
-} = require(`${ROOT}/private/mailConfig.json`)
+//const {
+  //senderEmail,
+  //password
+//} = require(`${ROOT}/private/mailConfig.json`)
 
-const sendEmail = require(`${ROOT}/src/emailer.js`)(senderEmail, password)
+//const sendEmail = require(`${ROOT}/src/emailer.js`)(senderEmail, password)
 
 test('emailer', t => (
   t.plan(1),
@@ -27,6 +27,6 @@ test('emailer', t => (
   .fork(
     t.fail,
     response =>
-      t.equals( '250', response.substring(0, 3) )
+      t.equals( response.substring(0, 3), '250' )
   )
 ) )
