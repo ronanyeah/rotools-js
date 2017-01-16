@@ -37,8 +37,7 @@ module.exports = (senderEmail, password) =>
               done
           )
         )
-  )
-  (
+  )(
     // https://nodemailer.com/2-0-0-beta/setup-smtp/
     nodemailer.createTransport(
       `smtps://${
