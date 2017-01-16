@@ -2,6 +2,7 @@
 
 const { map } = require('ramda')
 const { pipe } = require('sanctuary')
+const { resolve } = require('path')
 const { statSync, readdirSync } = require('fs')
 
 const flatten = require(`${__dirname}/../src/flatten.js`)
@@ -24,6 +25,7 @@ const walk = dir =>
 
 // String -> [String]
 module.exports = pipe([
+  resolve,
   walk,
   flatten
 ])
