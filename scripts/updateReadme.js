@@ -13,12 +13,8 @@ writeFileSync(
     readdirSync(`${ROOT}/src`)
     .map(
       fileName =>
-        (
-          fn =>
-            `[${fn}](https://github.com/ronanyeah/rotools/blob/master/docs.md#${fn})`
-        )(
-          fileName.replace('.js', '')
-        )
+        fileName.replace('.js', '')
+        // `[${fn}](https://github.com/ronanyeah/rotools/blob/master/docs.md#${fn})`
     )
     .sort()
     .join(',\n  ') +

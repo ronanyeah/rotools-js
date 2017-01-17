@@ -4,15 +4,15 @@
 
 ```
 const = {
-  [emailer](https://github.com/ronanyeah/rotools/blob/master/docs.md#emailer),
-  [exec](https://github.com/ronanyeah/rotools/blob/master/docs.md#exec),
-  [fileMapper](https://github.com/ronanyeah/rotools/blob/master/docs.md#fileMapper),
-  [flatten](https://github.com/ronanyeah/rotools/blob/master/docs.md#flatten),
-  [futchJson](https://github.com/ronanyeah/rotools/blob/master/docs.md#futchJson),
-  [futch](https://github.com/ronanyeah/rotools/blob/master/docs.md#futch),
-  [getCurrentIp](https://github.com/ronanyeah/rotools/blob/master/docs.md#getCurrentIp),
-  [ipValidator](https://github.com/ronanyeah/rotools/blob/master/docs.md#ipValidator),
-  [json](https://github.com/ronanyeah/rotools/blob/master/docs.md#json)
+  emailer,
+  exec,
+  fileMapper,
+  flatten,
+  futch,
+  futchJson,
+  getCurrentIp,
+  ipValidator,
+  json
 } = require('rotools')
 ```
 
