@@ -17,7 +17,7 @@ module.exports =
       (rej, res) =>
         void childProcess.exec(
           command,
-          { cwd: '/' },
+          { cwd: process.cwd() },
           (err, stdout, stderr) =>
             err
               ? rej(err)
