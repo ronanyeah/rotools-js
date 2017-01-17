@@ -3,7 +3,7 @@
 [![CircleCI](https://circleci.com/gh/ronanyeah/rotools.svg?style=svg)](https://circleci.com/gh/ronanyeah/rotools)
 
 ```
-const = {
+const {
   emailer,
   exec,
   fileMapper,
