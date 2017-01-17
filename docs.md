@@ -20,6 +20,23 @@ sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem')
 
 Returns **[emailer.sendEmail](#emailersendemail)** 
 
+# exec
+
+Execute shell commands in the current working directory.
+
+**Parameters**
+
+-   `command` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The shell command to be executed.
+
+**Examples**
+
+```javascript
+exec('git rev-parse --short HEAD')
+.fork( err, string )
+```
+
+Returns **any** Future&lt; err, string >
+
 # futch
 
 Futurized fetch. Worst name ever.
