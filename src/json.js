@@ -9,8 +9,9 @@ module.exports = {
    * Reads JSON files.
    * @alias json.read
    * @param {string} path Filepath.
-   * @returns Future[ err, JSON ]
-   * @example json.read('/file/path').fork( err, json )
+   * @returns Future< err, json >
+   * @example json.read('/file/path')
+   * .fork( err, json )
    */
   read:
     path =>
@@ -25,14 +26,15 @@ module.exports = {
    * @alias json.write
    * @param {string} path Filepath.
    * @param {any} json Valid JSON.
-   * @returns Future[ err, _ ]
-   * @example json.write('/file/path', { json: 'yeah' }).fork( ... )
+   * @returns Future< err, _ >
+   * @example json.write('/file/path', { json: 'yeah' })
+   * .fork( err, _ )
    */
   write:
     curry(
       (path, json) =>
         node(
-          done => // TODO try/catch the JSON call?
+          done =>
             fs.writeFile( path, JSON.stringify(json), done )
         )
     )

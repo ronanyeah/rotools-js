@@ -9,7 +9,10 @@ const nodemailer = require('nodemailer')
  * @param {string} senderEmail Your Gmail address.
  * @param {string} password Your Gmail password, or app password if you have 2FA enabled (https://support.google.com/accounts/answer/185833).
  * @returns {emailer.sendEmail}
- * @example emailer('mario@toad.com', 'hunter2') //=> sendEmail
+ * @example const sendEmail = emailer('mario@toad.com', 'hunter2')
+ *
+ * sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem')
+ * .fork( err, object )
  */
 module.exports = (senderEmail, password) =>
   (
@@ -21,8 +24,9 @@ module.exports = (senderEmail, password) =>
        * @param {string} fromLabel The label to show in the inbox.
        * @param {string} [subject=''] Subject line text.
        * @param {string} [content=''] Email body.
-       * @returns Future[ err, res ]
-       * @example sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem').fork( ... )
+       * @returns Future< err, object >
+       * @example sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem')
+       * .fork( err, object )
        */
       (recipient, fromLabel, subject = '', content = '') =>
         node(

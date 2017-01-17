@@ -9,8 +9,9 @@ const ipValidator = require(`${__dirname}/ipValidator.js`)
 /**
  * Gets current IP address and validates it.
  * @alias getCurrentIp
- * @returns Future[ err, string ]
- * @example getCurrentIp.fork( err, ip )
+ * @returns Future< err, string >
+ * @example getCurrentIp
+ * .fork( err, string )
  */
 module.exports =
   futch('https://ipinfo.io/json')

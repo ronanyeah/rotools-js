@@ -12,7 +12,10 @@ Uses Gmail email and password to create a mail transporter.
 **Examples**
 
 ```javascript
-emailer('mario@toad.com', 'hunter2') //=> sendEmail
+const sendEmail = emailer('mario@toad.com', 'hunter2')
+
+sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem')
+.fork( err, object )
 ```
 
 Returns **[emailer.sendEmail](#emailersendemail)** 
@@ -29,10 +32,11 @@ Futurized fetch. Worst name ever.
 **Examples**
 
 ```javascript
-futch('https://test.com/').fork( ... )
+futch('https://test.com/')
+.fork( err, res )
 ```
 
-Returns **any** Future[ err, res ]
+Returns **any** Future&lt; err, res >
 
 # futchJson
 
@@ -46,10 +50,11 @@ Futurized json fetch.
 **Examples**
 
 ```javascript
-futchJson('https://json.com/').fork( ... )
+futchJson('https://json.com/')
+.fork( err, json )
 ```
 
-Returns **any** Future[ err, res ]
+Returns **any** Future&lt; err, json >
 
 # getCurrentIp
 
@@ -58,10 +63,11 @@ Gets current IP address and validates it.
 **Examples**
 
 ```javascript
-getCurrentIp.fork( err, ip )
+getCurrentIp
+.fork( err, string )
 ```
 
-Returns **any** Future[ err, string ]
+Returns **any** Future&lt; err, string >
 
 # ipValidator
 
@@ -91,10 +97,11 @@ Returned from `emailer`. Sends an email.
 **Examples**
 
 ```javascript
-sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem').fork( ... )
+sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem')
+.fork( err, object )
 ```
 
-Returns **any** Future[ err, res ]
+Returns **any** Future&lt; err, object >
 
 # fileMapper
 
@@ -139,10 +146,11 @@ Reads JSON files.
 **Examples**
 
 ```javascript
-json.read('/file/path').fork( err, json )
+json.read('/file/path')
+.fork( err, json )
 ```
 
-Returns **any** Future[ err, JSON ]
+Returns **any** Future&lt; err, json >
 
 # json.write
 
@@ -156,7 +164,8 @@ Writes JSON files.
 **Examples**
 
 ```javascript
-json.write('/file/path', { json: 'yeah' }).fork( ... )
+json.write('/file/path', { json: 'yeah' })
+.fork( err, _ )
 ```
 
-Returns **any** Future[ err, _ ]
+Returns **any** Future&lt; err, \_ >

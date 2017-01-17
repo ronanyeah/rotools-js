@@ -9,8 +9,9 @@ const futch = require(`${__dirname}/futch.js`)
  * @alias futchJson
  * @param {string} url URL to fetch.
  * @param {object} [options] fetch options to be passed in.
- * @returns Future[ err, res ]
- * @example futchJson('https://json.com/').fork( ... )
+ * @returns Future< err, json >
+ * @example futchJson('https://json.com/')
+ * .fork( err, json )
  */
 module.exports = (url, options) =>
   (

@@ -8,8 +8,9 @@ const fetch = require('node-fetch')
  * @alias futch
  * @param {string} url URL to fetch.
  * @param {object} [options] fetch options to be passed in.
- * @returns Future[ err, res ]
- * @example futch('https://test.com/').fork( ... )
+ * @returns Future< err, res >
+ * @example futch('https://test.com/')
+ * .fork( err, res )
  */
 module.exports = (url, options) =>
   options
