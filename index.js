@@ -1,8 +1,7 @@
 'use strict'
 
-const { curry, assoc, replace } = require('ramda')
-const { reduce }                = require('sanctuary')
-const { readdirSync }           = require('fs')
+const { assoc, replace, reduce } = require('ramda')
+const { readdirSync } = require('fs')
 
 const srcFolder = `${__dirname}/src`
 
@@ -15,15 +14,13 @@ const srcFolder = `${__dirname}/src`
  */
 module.exports =
   reduce(
-    curry(
-      // Object -> String -> Object
-      (acc, file) =>
-        assoc(
-          replace('.js', '', file),
-          require(`${srcFolder}/${file}`),
-          acc
-        )
-    ),
+    // Object -> String -> Object
+    (acc, fileName) =>
+      assoc(
+        replace('.js', '', fileName),
+        require(`${srcFolder}/${fileName}`),
+        acc
+      ),
     {},
     readdirSync(srcFolder)
   )
