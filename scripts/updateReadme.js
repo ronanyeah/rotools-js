@@ -1,23 +1,26 @@
 'use strict'
 
 const { readdirSync, readFileSync, writeFileSync } = require('fs')
+const { replace, map, sort, gt, join, pipe } = require('ramda')
 
-global.ROOT = `${__dirname}/..`
+const ROOT = `${__dirname}/..`
+
+const formatFilenames =
+  pipe(
+    map(replace('.js', '')),
+    sort(gt),
+    join(',\n  ')
+  )
 
 writeFileSync(
   `${ROOT}/README.md`,
-  readFileSync(`${ROOT}/README.md`, 'utf8')
-  .replace(
-    /{[\s\S]*}/,
+  replace(
+    /{[\s\S]*}/, // Select braces and contents.
+
     '{\n  ' +
-    readdirSync(`${ROOT}/src`)
-    .map(
-      fileName =>
-        fileName.replace('.js', '')
-        // `[${fn}](https://github.com/ronanyeah/rotools/blob/master/docs.md#${fn})`
-    )
-    .sort()
-    .join(',\n  ') +
-    '\n}'
+    formatFilenames(readdirSync(`${ROOT}/src`)) +
+    '\n}',
+
+    readFileSync(`${ROOT}/README.md`, 'utf8')
   )
 )
