@@ -9,7 +9,7 @@ module.exports = {
    * Reads JSON files.
    * @alias json.read
    * @param {string} path Filepath.
-   * @returns Future< err, json >
+   * @returns Future< err, any >
    * @example json.read('/file/path')
    * .fork( err, { yeah: 'ok' } )
    */

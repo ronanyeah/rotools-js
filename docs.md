@@ -71,7 +71,7 @@ futchJson('https://json.com/')
 .fork( err, { yeah: 'ok' } )
 ```
 
-Returns **any** Future&lt; err, json >
+Returns **any** Future&lt; err, any >
 
 # getCurrentIp
 
@@ -187,7 +187,7 @@ json.read('/file/path')
 .fork( err, { yeah: 'ok' } )
 ```
 
-Returns **any** Future&lt; err, json >
+Returns **any** Future&lt; err, any >
 
 # json.write
 

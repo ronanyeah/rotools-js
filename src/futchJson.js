@@ -9,7 +9,7 @@ const futch = require(`${__dirname}/futch.js`)
  * @alias futchJson
  * @param {string} url URL to fetch.
  * @param {object} [options] fetch options to be passed in.
- * @returns Future< err, json >
+ * @returns Future< err, any >
  * @example futchJson('https://json.com/')
  * .fork( err, { yeah: 'ok' } )
  */
