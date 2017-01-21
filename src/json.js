@@ -11,7 +11,7 @@ module.exports = {
    * @param {string} path Filepath.
    * @returns Future< err, json >
    * @example json.read('/file/path')
-   * .fork( err, json )
+   * .fork( err, { yeah: 'ok' } )
    */
   read:
     path =>

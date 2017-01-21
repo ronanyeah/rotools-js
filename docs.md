@@ -15,7 +15,7 @@ Uses Gmail email and password to create a mail transporter.
 const sendEmail = emailer('mario@toad.com', 'hunter2')
 
 sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem')
-.fork( err, object )
+.fork( err, {..} )
 ```
 
 Returns **[emailer.sendEmail](#emailersendemail)** 
@@ -31,8 +31,8 @@ Execute shell commands in the current working directory.
 **Examples**
 
 ```javascript
-exec('git rev-parse --short HEAD')
-.fork( err, string )
+exec('pwd')
+.fork( err, '/home/ronan/repos/rotools' )
 ```
 
 Returns **any** Future&lt; err, string >
@@ -53,7 +53,7 @@ futch('https://test.com/')
 .fork( err, res )
 ```
 
-Returns **any** Future&lt; err, res >
+Returns **any** Future&lt; err, object >
 
 # futchJson
 
@@ -68,7 +68,7 @@ Futurized json fetch.
 
 ```javascript
 futchJson('https://json.com/')
-.fork( err, json )
+.fork( err, { yeah: 'ok' } )
 ```
 
 Returns **any** Future&lt; err, json >
@@ -81,10 +81,30 @@ Gets current IP address and validates it.
 
 ```javascript
 getCurrentIp
-.fork( err, string )
+.fork( err, '56.24.123.123' )
 ```
 
 Returns **any** Future&lt; err, string >
+
+# input
+
+Get validated user input from the CLI.
+
+**Parameters**
+
+-   `validator` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Input will be passed to this function and the Future will resolve with the value if it returns truthy.
+
+**Examples**
+
+```javascript
+const isEven = x =>
+Number(x) % 2 === 0
+
+input( isEven )
+.fork( err, '4' )
+```
+
+Returns **any** Future&lt; err, any >
 
 # ipValidator
 
@@ -115,7 +135,7 @@ Returned from `emailer`. Sends an email.
 
 ```javascript
 sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem')
-.fork( err, object )
+.fork( err, {..} )
 ```
 
 Returns **any** Future&lt; err, object >
@@ -164,7 +184,7 @@ Reads JSON files.
 
 ```javascript
 json.read('/file/path')
-.fork( err, json )
+.fork( err, { yeah: 'ok' } )
 ```
 
 Returns **any** Future&lt; err, json >

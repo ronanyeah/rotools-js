@@ -8,7 +8,7 @@ const fetch = require('node-fetch')
  * @alias futch
  * @param {string} url URL to fetch.
  * @param {object} [options] fetch options to be passed in.
- * @returns Future< err, res >
+ * @returns Future< err, object >
  * @example futch('https://test.com/')
  * .fork( err, res )
  */

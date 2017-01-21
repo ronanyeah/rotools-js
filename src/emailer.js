@@ -12,7 +12,7 @@ const nodemailer = require('nodemailer')
  * @example const sendEmail = emailer('mario@toad.com', 'hunter2')
  *
  * sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem')
- * .fork( err, object )
+ * .fork( err, {..} )
  */
 module.exports = (senderEmail, password) =>
   (
@@ -26,7 +26,7 @@ module.exports = (senderEmail, password) =>
        * @param {string} [content=''] Email body.
        * @returns Future< err, object >
        * @example sendEmail('luigi@toad.com', 'Mario', 'RE: Koopas', 'Big Problem')
-       * .fork( err, object )
+       * .fork( err, {..} )
        */
       (recipient, fromLabel, subject = '', content = '') =>
         node(

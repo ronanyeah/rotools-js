@@ -11,6 +11,7 @@ const {
   futch,
   futchJson,
   getCurrentIp,
+  input,
   ipValidator,
   json
 } = require('rotools')

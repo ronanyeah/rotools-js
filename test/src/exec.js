@@ -6,11 +6,11 @@ const exec = require(`${ROOT}/src/exec.js`)
 test('exec', t => (
   t.plan(2),
 
-  exec('ls')
+  exec('pwd')
   .fork(
     t.fail,
     output =>
-      t.equals(typeof output, 'string', 'exec ls ok')
+      t.ok(output.match('rotools'), 'exec pwd ok')
   ),
 
   exec('---------')
@@ -21,4 +21,3 @@ test('exec', t => (
   )
 
 ) )
-

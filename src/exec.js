@@ -8,8 +8,8 @@ const childProcess = require('child_process')
  * @alias exec
  * @param {string} command The shell command to be executed.
  * @returns Future< err, string >
- * @example exec('git rev-parse --short HEAD')
- * .fork( err, string )
+ * @example exec('pwd')
+ * .fork( err, '/home/ronan/repos/rotools' )
  */
 module.exports =
   command =>
